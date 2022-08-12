@@ -5,22 +5,6 @@ RewriteCond %{REQUEST_FILENAME} !-d
 #Headers when using Apache with CGI/FastCGI
 SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
 
-#AUTH routes
-RewriteRule ^auth/([A-Za-z0-9]*)/([A-Za-z0-9]*)$ rest.php?class=ApplicationAuthenticationRestService&method=getToken&login=$1&password=$2&%{QUERY_STRING} [NC]
-
-#RESTFUL routes
-RewriteRule ^contacts/([A-Za-z0-9]*)$ rest.php?class=ContactRestService&method=handle&id=$1&%{QUERY_STRING} [NC]
-RewriteRule ^contacts/([A-Za-z-_0-9]*)/([A-Za-z-_0-9]*)$ rest.php?class=ContactRestService&method=$2&id=$1&%{QUERY_STRING} [NC]
-RewriteRule ^contacts$ rest.php?class=ContactRestService&method=handle&%{QUERY_STRING} [NC]
-
-RewriteRule ^users/([A-Za-z0-9]*)$ rest.php?class=SystemUserRestService&method=handle&id=$1&%{QUERY_STRING} [NC]
-RewriteRule ^users/([A-Za-z-_0-9]*)/([A-Za-z-_0-9]*)$ rest.php?class=SystemUserRestService&method=$2&id=$1&%{QUERY_STRING} [NC]
-RewriteRule ^users$ rest.php?class=SystemUserRestService&method=handle&%{QUERY_STRING} [NC]
-
-RewriteRule ^user-groups/([A-Za-z0-9]*)$ rest.php?class=SystemUserGroupRestService&method=handle&id=$1&%{QUERY_STRING} [NC]
-RewriteRule ^user-groups/([A-Za-z-_0-9]*)/([A-Za-z-_0-9]*)$ rest.php?class=SystemUserGroupRestService&method=$2&id=$1&%{QUERY_STRING} [NC]
-RewriteRule ^user-groups$ rest.php?class=SystemUserGroupRestService&method=handle&%{QUERY_STRING} [NC]
-
 RewriteRule ^persons/([A-Za-z0-9]*)$ rest.php?class=PersonService&method=handle&id=$1&%{QUERY_STRING} [NC]
 RewriteRule ^persons/([A-Za-z-_0-9]*)/([A-Za-z-_0-9]*)$ rest.php?class=PersonService&method=$2&id=$1&%{QUERY_STRING} [NC]
 RewriteRule ^persons$ rest.php?class=PersonService&method=handle&%{QUERY_STRING} [NC]
